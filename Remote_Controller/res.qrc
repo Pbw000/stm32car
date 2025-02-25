@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../../c#/img200.ico</file>
+        <file>res/ic_fluent_bluetooth_connected_24_regular.png</file>
+        <file>res/ic_fluent_caret_down_24_regular.png</file>
+        <file>res/ic_fluent_caret_down_right_24_regular.png</file>
+        <file>res/ic_fluent_caret_left_24_regular.png</file>
+        <file>res/ic_fluent_caret_right_24_regular.png</file>
+        <file>res/ic_fluent_caret_up_24_regular.png</file>
+        <file>res/ic_fluent_plug_connected_24_regular.png</file>
+        <file>res/ic_fluent_plug_disconnected_24_regular.png</file>
+        <file>res/ic_fluent_settings_24_regular.png</file>
+        <file>res/ic_fluent_vehicle_car_24_regular.png</file>
+        <file>res/ic_fluent_vehicle_car_48_regular.png</file>
+        <file>res/ic_fluent_vehicle_car_collision_24_regular.png</file>
+        <file>res/ic_fluent_record_stop_24_regular.png</file>
+        <file>res/ic_fluent_stop_24_regular.png</file>
+    </qresource>
+</RCC>

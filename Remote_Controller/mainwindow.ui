@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Car Controller</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/res/ic_fluent_vehicle_car_48_regular.png</normaloff>:/res/ic_fluent_vehicle_car_48_regular.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QWidget" name="widget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>120</height>
+         </size>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="1" column="1">
+          <widget class="QFrame" name="frame_6">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_9">
+            <item row="0" column="0">
+             <widget class="QPushButton" name="pushButton_7">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>设置</string>
+              </property>
+              <property name="icon">
+               <iconset resource="res.qrc">
+                <normaloff>:/res/ic_fluent_settings_24_regular.png</normaloff>:/res/ic_fluent_settings_24_regular.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="pushButton_6">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>连接</string>
+              </property>
+              <property name="icon">
+               <iconset resource="res.qrc">
+                <normaloff>:/res/ic_fluent_plug_connected_24_regular.png</normaloff>:/res/ic_fluent_plug_connected_24_regular.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QFrame" name="frame_5">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="0" column="1">
+             <widget class="QTextBrowser" name="textBrowser">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QWidget" name="info_widget" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>0</height>
+               </size>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QLabel" name="car_icon">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="res.qrc">:/res/ic_fluent_vehicle_car_24_regular.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>false</bool>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>Car</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QStackedWidget" name="stackedWidget">
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="page">
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QFrame" name="frame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>60</horstretch>
+              <verstretch>60</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <property name="leftMargin">
+              <number>20</number>
+             </property>
+             <property name="topMargin">
+              <number>20</number>
+             </property>
+             <property name="rightMargin">
+              <number>20</number>
+             </property>
+             <property name="bottomMargin">
+              <number>20</number>
+             </property>
+             <item row="2" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <item>
+                <widget class="QPushButton" name="pushButton_3">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>60</horstretch>
+                   <verstretch>60</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>60</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="res.qrc">
+                   <normaloff>:/res/ic_fluent_caret_up_24_regular.png</normaloff>:/res/ic_fluent_caret_up_24_regular.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>48</width>
+                   <height>48</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <item>
+                  <widget class="QPushButton" name="pushButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                     <horstretch>60</horstretch>
+                     <verstretch>60</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>60</width>
+                     <height>60</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="res.qrc">
+                     <normaloff>:/res/ic_fluent_caret_left_24_regular.png</normaloff>:/res/ic_fluent_caret_left_24_regular.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>48</width>
+                     <height>48</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="stop_btn_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="res.qrc">
+                     <normaloff>:/res/ic_fluent_stop_24_regular.png</normaloff>:/res/ic_fluent_stop_24_regular.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>48</width>
+                     <height>48</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                     <horstretch>60</horstretch>
+                     <verstretch>60</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>60</width>
+                     <height>60</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="res.qrc">
+                     <normaloff>:/res/ic_fluent_caret_right_24_regular.png</normaloff>:/res/ic_fluent_caret_right_24_regular.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>48</width>
+                     <height>48</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_4">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>60</horstretch>
+                   <verstretch>60</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>60</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="res.qrc">
+                   <normaloff>:/res/ic_fluent_caret_down_24_regular.png</normaloff>:/res/ic_fluent_caret_down_24_regular.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>48</width>
+                   <height>48</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="0">
+              <widget class="QFrame" name="frame_7">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QPushButton" name="stop_btn">
+                  <property name="text">
+                   <string>停止</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="res.qrc">
+                    <normaloff>:/res/ic_fluent_record_stop_24_regular.png</normaloff>:/res/ic_fluent_record_stop_24_regular.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSlider" name="Speed_Slider">
+                  <property name="maximum">
+                   <number>100</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="page_2">
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QFrame" name="frame_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_10">
+             <item row="0" column="0">
+              <layout class="QFormLayout" name="formLayout_2">
+               <property name="labelAlignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="formAlignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="page_3">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QFrame" name="route_frame">
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QFormLayout" name="formLayout">
+             <item row="0" column="0">
+              <layout class="QFormLayout" name="formLayout_3">
+               <property name="labelAlignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="formAlignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_5">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>提交</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>19</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

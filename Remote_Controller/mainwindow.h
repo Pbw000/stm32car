@@ -1,0 +1,43 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+#include"joystick.h"
+#include"route.h"
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+    enum choice{
+        btn,js,r
+    };
+    struct config{
+        bool show_speed;
+        choice choice;
+    };
+
+private slots:
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_stop_btn_clicked();
+    void update_setting(config c);
+
+    void on_stop_btn_2_clicked();
+
+private:
+    route* route_widget;
+    Joystick* joystick;
+    Ui::MainWindow *ui;
+};
+#endif // MAINWINDOW_H
