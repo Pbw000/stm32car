@@ -21,11 +21,17 @@ MainWindow::MainWindow(QWidget *parent)
     route_widget=new route();
     ui->formLayout_3->addWidget(route_widget);
     route_widget->show();
-    Bluetooth_conn* b=new Bluetooth_conn();
+
 }
 
 MainWindow::~MainWindow()
-{
+{   delete route_widget;
+    if(b_conn){
+        b_conn->close();
+        delete b_conn;
+    }
+
+    delete joystick;
     delete ui;
 }
 
@@ -42,16 +48,22 @@ void MainWindow::update_setting(config c){
 }
 
 void MainWindow::on_pushButton_6_clicked()
-{ui->textBrowser->append("Hello");
+{   if(!b_conn)b_conn=new Bluetooth_conn();
+    else {b_conn->on_scan_btn_clicked();
+        b_conn->showNormal();}
+    b_conn->show();
     ui->car_icon->setPixmap(QPixmap(":/res/ic_fluent_vehicle_car_collision_24_regular.png"));
 }
 
 
 void MainWindow::on_stop_btn_clicked()
 {
-    ui->Speed_Slider->setValue(0);
+ ui->Speed_Slider->setValue(0);
 }
-
+void MainWindow::set_battery_value(const int& value){
+    ui->label_3->setText(QString::number(value)+"%");
+    ui->battery_icon->setPixmap(QPixmap(":/res/ic_fluent_battery_"+QString::number(value/10)+"_24_regular.png"));
+}
 
 void MainWindow::on_stop_btn_2_clicked()
 {

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include"joystick.h"
 #include"route.h"
+#include"bluetooth_conn.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -29,7 +30,7 @@ private slots:
     void on_pushButton_7_clicked();
 
     void on_pushButton_6_clicked();
-
+    void set_battery_value(const int&);
     void on_stop_btn_clicked();
     void update_setting(config c);
 
@@ -38,6 +39,7 @@ private slots:
 private:
     route* route_widget;
     Joystick* joystick;
+    Bluetooth_conn* b_conn=nullptr;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

@@ -7,18 +7,19 @@
 #include <QMouseEvent>
 class route:public QWidget {
     Q_OBJECT
+     friend class MainWindow;
 public:
     route(QWidget *parent = nullptr);
     struct geometry{
         int x;
         int y;
     };
-    std::list<geometry> geo;
+
     const std::list<route::geometry>& get_geo()const;
     ~route();
 private:
     void updatePos(const QPoint&);
-
+    std::list<geometry> geo;
 
 protected:
     void paintEvent(QPaintEvent *) override {

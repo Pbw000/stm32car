@@ -1,7 +1,7 @@
 #ifndef CONFIG_DIALOG_H
 #define CONFIG_DIALOG_H
 #include <QDialog>
-#include"mainwindow.h"
+#include "mainwindow.h"
 namespace Ui {
 class Config_Dialog;
 }

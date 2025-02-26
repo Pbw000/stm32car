@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>../../c#/img200.ico</file>
         <file>res/ic_fluent_bluetooth_connected_24_regular.png</file>
         <file>res/ic_fluent_caret_down_24_regular.png</file>
         <file>res/ic_fluent_caret_down_right_24_regular.png</file>
@@ -15,5 +14,21 @@
         <file>res/ic_fluent_vehicle_car_collision_24_regular.png</file>
         <file>res/ic_fluent_record_stop_24_regular.png</file>
         <file>res/ic_fluent_stop_24_regular.png</file>
+        <file>res/ic_fluent_access_time_24_regular.png</file>
+        <file>res/ic_fluent_battery_0_24_regular.png</file>
+        <file>res/ic_fluent_battery_10_24_regular.png</file>
+        <file>res/ic_fluent_battery_1_24_regular.png</file>
+        <file>res/ic_fluent_battery_2_24_regular.png</file>
+        <file>res/ic_fluent_battery_3_24_regular.png</file>
+        <file>res/ic_fluent_battery_4_24_regular.png</file>
+        <file>res/ic_fluent_battery_5_24_regular.png</file>
+        <file>res/ic_fluent_battery_6_24_regular.png</file>
+        <file>res/ic_fluent_battery_7_24_regular.png</file>
+        <file>res/ic_fluent_battery_8_24_regular.png</file>
+        <file>res/ic_fluent_battery_9_24_regular.png</file>
+        <file>res/ic_fluent_battery_charge_24_regular.png</file>
+        <file>res/ic_fluent_battery_warning_24_regular.png</file>
+        <file>res/ic_fluent_bluetooth_disabled_24_regular.png</file>
+        <file>res/ic_fluent_bluetooth_searching_24_regular.png</file>
     </qresource>
 </RCC>

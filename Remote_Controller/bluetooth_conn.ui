@@ -13,23 +13,46 @@
   <property name="windowTitle">
    <string>Bluetooth</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/res/ic_fluent_bluetooth_connected_24_regular.png</normaloff>:/res/ic_fluent_bluetooth_connected_24_regular.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="scan_btn">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>扫描</string>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/res/ic_fluent_bluetooth_connected_24_regular.png</normaloff>:/res/ic_fluent_bluetooth_connected_24_regular.png</iconset>
        </property>
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QListView" name="listView"/>
+      <widget class="QListWidget" name="listWidget">
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="horizontalScrollMode">
+        <enum>QAbstractItemView::ScrollMode::ScrollPerItem</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>

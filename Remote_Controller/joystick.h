@@ -11,6 +11,7 @@
 
 class Joystick : public QWidget {
     Q_OBJECT
+    friend class MainWindow;
 public:
     explicit Joystick(QWidget *parent = nullptr,const int& radius=400) : QWidget(parent), m_x(radius/2), m_y(radius/2) {
         setFixedSize(radius, radius);
