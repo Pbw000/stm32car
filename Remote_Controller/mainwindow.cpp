@@ -10,6 +10,10 @@ MainWindow::MainWindow(QWidget *parent)
 	, ui(new Ui::MainWindow) {
 	ui->setupUi(this);
 	ui->stackedWidget->setCurrentIndex(0);
+    ui->pushButton_3->setShortcut(QKeySequence(Qt::Key_Up));
+    ui->pushButton_4->setShortcut(QKeySequence(Qt::Key_Down));
+    ui->pushButton->setShortcut(QKeySequence(Qt::Key_Left));
+    ui->pushButton_2->setShortcut(QKeySequence(Qt::Key_Right));
 	Config_Dialog& Dialog = Config_Dialog::get_instance();
     connect(&Dialog,&Config_Dialog::open_serial,this,&MainWindow::open_bluetooth_serial);
 	connect(&Dialog, &Config_Dialog::update_settings, this, &MainWindow::update_setting);
