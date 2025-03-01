@@ -2,13 +2,10 @@
 #include "ui_config_dialog.h"
 
 Config_Dialog::Config_Dialog(QWidget *parent)
-    :ui(new Ui::Config_Dialog)
+    :QDialog(parent),ui(new Ui::Config_Dialog)
 {    c.show_speed=true;
     c.choice=MainWindow::btn;
     ui->setupUi(this);
-#ifdef Q_OS_ANDROID
-   this->setParent(parent);
-#endif
     ui->checkBox->setChecked(c.show_speed);
     ui->radioButton_2->setChecked(true);
 }

@@ -2,29 +2,30 @@
 #define BLUETOOTH_CONN_H
 #include<QBluetoothDeviceDiscoveryAgent>
 #include <QWidget>
+#include<QDialog>
 #include<QBluetoothDeviceDiscoveryAgent>
 #include<QBluetoothSocket>
+#include<QPushButton>
 namespace Ui {
 class Bluetooth_conn;
 }
 
-class Bluetooth_conn : public QWidget
+class Bluetooth_conn : public QDialog
 {
     Q_OBJECT
     friend class MainWindow;
 signals:
-    void complete();
+    void connected(QBluetoothSocket* connected_socket,QString Device_Name,QString addr);
 public:
     explicit Bluetooth_conn(QWidget *parent = nullptr);
     ~Bluetooth_conn();
 private slots:
     void additem(const QBluetoothDeviceInfo&);
-    void make_connection();
+    void make_connection(QPointer<QPushButton>, const QString &, const QString&);
     void on_scan_btn_clicked();
 
 private:
     Ui::Bluetooth_conn *ui;
-    QBluetoothSocket* connected_socket;
     QBluetoothDeviceDiscoveryAgent* discoveryAgent;
 };
 

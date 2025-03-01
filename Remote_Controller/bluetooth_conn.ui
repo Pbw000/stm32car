@@ -33,7 +33,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/res/ic_fluent_bluetooth_connected_24_regular.png</normaloff>:/res/ic_fluent_bluetooth_connected_24_regular.png</iconset>
+         <normaloff>:/res/ic_fluent_bluetooth_searching_24_regular.png</normaloff>:/res/ic_fluent_bluetooth_searching_24_regular.png</iconset>
        </property>
       </widget>
      </item>

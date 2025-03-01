@@ -180,14 +180,26 @@
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>24</width>
+                     <height>24</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>24</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string/>
                    </property>
                    <property name="pixmap">
-                    <pixmap resource="res.qrc">:/res/ic_fluent_vehicle_car_24_regular.png</pixmap>
+                    <pixmap resource="res.qrc">:/res/ic_fluent_vehicle_car_collision_24_regular.png</pixmap>
                    </property>
                    <property name="scaledContents">
-                    <bool>false</bool>
+                    <bool>true</bool>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -203,7 +215,7 @@
                     </sizepolicy>
                    </property>
                    <property name="text">
-                    <string>Car</string>
+                    <string>N/A</string>
                    </property>
                   </widget>
                  </item>
@@ -589,7 +601,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

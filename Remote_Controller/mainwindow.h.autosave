@@ -39,6 +39,7 @@ private slots:
     void socket_disconnected();
 private:
     QBluetoothSocket* connected_socket=nullptr;
+    QString Address;
     route* route_widget;
     Joystick* joystick;
     Bluetooth_conn* b_conn=nullptr;
