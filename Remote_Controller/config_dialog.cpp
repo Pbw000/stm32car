@@ -1,6 +1,5 @@
 #include "config_dialog.h"
 #include "ui_config_dialog.h"
-
 Config_Dialog::Config_Dialog(QWidget *parent)
     :QDialog(parent),ui(new Ui::Config_Dialog)
 {    c.show_speed=true;
@@ -84,5 +83,14 @@ void Config_Dialog::on_radioButton_3_clicked()
 {
     ui->radioButton->setChecked(false);
     ui->radioButton_2->setChecked(false);
+}
+
+
+
+
+
+void Config_Dialog::on_open_bluetooth_serial_clicked()
+{
+    emit open_serial();
 }
 

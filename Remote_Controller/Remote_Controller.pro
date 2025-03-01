@@ -11,6 +11,7 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 SOURCES += \
     bluetooth_conn.cpp \
+    bluetooth_serial.cpp \
     config_dialog.cpp \
     joystick.cpp \
     main.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     bluetooth_conn.h \
+    bluetooth_serial.h \
     config_dialog.h \
     joystick.h \
     mainwindow.h \
@@ -26,6 +28,7 @@ HEADERS += \
 
 FORMS += \
     bluetooth_conn.ui \
+    bluetooth_serial.ui \
     config_dialog.ui \
     mainwindow.ui
 

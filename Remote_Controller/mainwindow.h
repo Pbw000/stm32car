@@ -14,7 +14,7 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
+    friend class bluetooth_serial;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -37,8 +37,10 @@ private slots:
     void socket_connected(QBluetoothSocket*, const QString&,const QString&);
     void on_stop_btn_2_clicked();
     void socket_disconnected();
+    void open_bluetooth_serial();
 private:
     QBluetoothSocket* connected_socket=nullptr;
+    QString Address;
     route* route_widget;
     Joystick* joystick;
     Bluetooth_conn* b_conn=nullptr;

@@ -4,12 +4,14 @@
 #include"route.h"
 #include"bluetooth_conn.h"
 #include<QMessageBox>
+#include"bluetooth_serial.h"
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow) {
 	ui->setupUi(this);
 	ui->stackedWidget->setCurrentIndex(0);
 	Config_Dialog& Dialog = Config_Dialog::get_instance();
+    connect(&Dialog,&Config_Dialog::open_serial,this,&MainWindow::open_bluetooth_serial);
 	connect(&Dialog, &Config_Dialog::update_settings, this, &MainWindow::update_setting);
 
 #ifdef Q_OS_ANDROID
@@ -38,6 +40,7 @@ MainWindow::~MainWindow() {
 void MainWindow::on_pushButton_7_clicked() {
     Config_Dialog& Dialog = Config_Dialog::get_instance();
 	Dialog.set_position(this);
+    Dialog.activateWindow();
 	Dialog.show();
 
 }
@@ -110,4 +113,10 @@ void MainWindow::socket_disconnected(){
     ui->label->setText("N/A");
     QMessageBox msgbox(QMessageBox::Warning, "警告", "连接已断开", QMessageBox::Ok, this);
     msgbox.exec();
+}
+void MainWindow::open_bluetooth_serial(){
+    if(connected_socket){
+    bluetooth_serial* b=new bluetooth_serial(this);
+    b->show();
+    }
 }
