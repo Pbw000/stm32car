@@ -13,7 +13,6 @@ SOURCES += \
     bluetooth_conn.cpp \
     bluetooth_serial.cpp \
     config_dialog.cpp \
-    joystick.cpp \
     main.cpp \
     mainwindow.cpp \
     route.cpp
@@ -42,15 +41,35 @@ RESOURCES += \
 
 DISTFILES += \
     ../Remote_Controller.pro/AndroidManifest.xml \
+    ../Remote_Controller.pro/AndroidManifest.xml \
     ../Remote_Controller.pro/build.gradle \
+    ../Remote_Controller.pro/build.gradle \
+    ../Remote_Controller.pro/gradle.properties \
+    ../Remote_Controller.pro/gradle/wrapper/gradle-wrapper.jar \
+    ../Remote_Controller.pro/gradle/wrapper/gradle-wrapper.properties \
+    ../Remote_Controller.pro/gradlew \
+    ../Remote_Controller.pro/gradlew.bat \
+    ../Remote_Controller.pro/res/values/libs.xml \
     ../Remote_Controller.pro/res/values/libs.xml \
     ../Remote_Controller.pro/res/xml/qtprovider_paths.xml \
+    ../Remote_Controller.pro/res/xml/qtprovider_paths.xml \
+    android/AndroidManifest.xml \
     android/AndroidManifest.xml \
     android/build.gradle \
+    android/gradle.properties \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
+    android/gradlew.bat \
     android/res/values/libs.xml \
     android/res/xml/qtprovider_paths.xml
 
 contains(ANDROID_TARGET_ARCH,arm64-v8a) {
+    ANDROID_PACKAGE_SOURCE_DIR = \
+        $$PWD/../Remote_Controller.pro
+}
+
+contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_PACKAGE_SOURCE_DIR = \
         $$PWD/../Remote_Controller.pro
 }

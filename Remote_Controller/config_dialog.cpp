@@ -3,7 +3,7 @@
 Config_Dialog::Config_Dialog(QWidget *parent)
     :QDialog(parent),ui(new Ui::Config_Dialog)
 {    c.show_speed=true;
-    c.choice=MainWindow::btn;
+    c.config_choice=MainWindow::btn;
     ui->setupUi(this);
     ui->checkBox->setChecked(c.show_speed);
     ui->radioButton_2->setChecked(true);
@@ -16,6 +16,7 @@ Config_Dialog::~Config_Dialog()
 void Config_Dialog::set_position(QWidget *parent_window){
 #ifdef Q_OS_ANDROID
 this->setGeometry(parent_window->geometry());
+this->setParent(parent_window);
 #else
     int x=parent_window->geometry().x()+parent_window->size().width()/2-width()/2;
     int y=parent_window->geometry().y()+parent_window->size().height()/2-height()/2;
@@ -31,9 +32,9 @@ Config_Dialog& Config_Dialog::get_instance(){
 }
 
 void Config_Dialog::on_accept_btn_clicked()
-{   if(ui->radioButton->isChecked())c.choice=MainWindow::js;
-    else if(ui->radioButton_2->isChecked())c.choice=MainWindow::btn;
-    else c.choice=MainWindow::r;
+{   if(ui->radioButton->isChecked())c.config_choice=MainWindow::js;
+    else if(ui->radioButton_2->isChecked())c.config_choice=MainWindow::btn;
+    else c.config_choice=MainWindow::r;
     c.show_speed=ui->checkBox->isChecked();
     this->close();
     emit update_settings(c);
@@ -42,7 +43,7 @@ void Config_Dialog::on_accept_btn_clicked()
 
 
 void Config_Dialog::on_cancel_btn_clicked()
-{   switch(c.choice){
+{   switch(c.config_choice){
     case MainWindow::js:
         ui->radioButton->setChecked(true);
         break;

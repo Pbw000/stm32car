@@ -484,29 +484,17 @@
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_2">
                 <item>
-                 <widget class="QPushButton" name="stop_btn">
-                  <property name="text">
-                   <string>停止</string>
+                 <widget class="QProgressBar" name="speed_indicator">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                   </font>
                   </property>
-                  <property name="icon">
-                   <iconset resource="res.qrc">
-                    <normaloff>:/res/ic_fluent_record_stop_24_regular.png</normaloff>:/res/ic_fluent_record_stop_24_regular.png</iconset>
+                  <property name="value">
+                   <number>24</number>
                   </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>24</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSlider" name="Speed_Slider">
-                  <property name="maximum">
-                   <number>100</number>
-                  </property>
-                  <property name="orientation">
-                   <enum>Qt::Orientation::Horizontal</enum>
+                  <property name="format">
+                   <string>%p</string>
                   </property>
                  </widget>
                 </item>
@@ -601,7 +589,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>20</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

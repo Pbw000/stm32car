@@ -23,7 +23,7 @@ public:
     };
     struct config{
         bool show_speed;
-        choice choice;
+        choice config_choice;
     };
     void print(const QString &info);
 
@@ -32,15 +32,36 @@ private slots:
     void rec_data(const QString& data);
     void on_pushButton_6_clicked();
     void set_battery_value(const int&);
-    void on_stop_btn_clicked();
     void update_setting(config c);
     void socket_connected(QBluetoothSocket*, const QString&,const QString&);
     void on_stop_btn_2_clicked();
     void socket_disconnected();
     void open_bluetooth_serial();
+    void change_velocity();
+
+
+    void on_pushButton_3_pressed();
+
+    void on_pushButton_pressed();
+
+    void on_pushButton_4_pressed();
+
+    void on_pushButton_2_pressed();
+
+    void on_pushButton_3_released();
+
+    void on_pushButton_released();
+
+    void on_pushButton_4_released();
+
+    void on_pushButton_2_released();
+
 private:
+    QTimer* tmr=new QTimer(this);
     QBluetoothSocket* connected_socket=nullptr;
     QString Address;
+    int velocity_x=0,velocity_y=0;
+    int is_x_pressed=0,is_y_pressed=0;
     route* route_widget;
     Joystick* joystick;
     Bluetooth_conn* b_conn=nullptr;

@@ -9,7 +9,6 @@ bluetooth_serial::bluetooth_serial(QWidget *parent)
 
     socket_serial=static_cast<MainWindow>(parent).connected_socket;
 }
-
 bluetooth_serial::~bluetooth_serial()
 {
     delete ui;

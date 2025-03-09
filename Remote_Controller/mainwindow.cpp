@@ -5,6 +5,7 @@
 #include"bluetooth_conn.h"
 #include<QMessageBox>
 #include"bluetooth_serial.h"
+#include<QTimer>
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow) {
@@ -14,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pushButton_4->setShortcut(QKeySequence(Qt::Key_Down));
     ui->pushButton->setShortcut(QKeySequence(Qt::Key_Left));
     ui->pushButton_2->setShortcut(QKeySequence(Qt::Key_Right));
+    ui->speed_indicator->setValue(0);
+    tmr->setInterval(20);
+    connect(tmr,&QTimer::timeout,this,&MainWindow::change_velocity);
 	Config_Dialog& Dialog = Config_Dialog::get_instance();
     connect(&Dialog,&Config_Dialog::open_serial,this,&MainWindow::open_bluetooth_serial);
 	connect(&Dialog, &Config_Dialog::update_settings, this, &MainWindow::update_setting);
@@ -50,7 +54,7 @@ void MainWindow::on_pushButton_7_clicked() {
 }
 void MainWindow::update_setting(config c) {
 	ui->frame_7->setVisible(c.show_speed);
-	ui->stackedWidget->setCurrentIndex(c.choice);
+    ui->stackedWidget->setCurrentIndex(c.config_choice);
 	route_widget->geo.clear();
 }
 
@@ -80,17 +84,13 @@ void MainWindow::on_pushButton_6_clicked() {
 	b_conn->show();
 }
 
-
-void MainWindow::on_stop_btn_clicked() {
-	ui->Speed_Slider->setValue(0);
-}
 void MainWindow::set_battery_value(const int& value) {
 	ui->label_3->setText(QString::number(value) + "%");
 	ui->battery_icon->setPixmap(QPixmap(":/res/ic_fluent_battery_" + QString::number(value / 10) + "_24_regular.png"));
 }
 
 void MainWindow::on_stop_btn_2_clicked() {
-	on_stop_btn_clicked();
+      ui->speed_indicator->setValue(0);
 }
 
 void MainWindow::socket_connected(QBluetoothSocket* s, const QString &name, const QString &addr) {
@@ -123,4 +123,81 @@ void MainWindow::open_bluetooth_serial(){
     bluetooth_serial* b=new bluetooth_serial(this);
     b->show();
     }
+}
+
+void MainWindow::on_pushButton_3_pressed()
+{//up
+    if(is_y_pressed)return;
+    else is_y_pressed=1;
+    tmr->start();
+    velocity_y++;
+}
+void MainWindow::on_pushButton_4_pressed()
+{//down
+    if(is_y_pressed)return;
+    else is_y_pressed=-1;
+    tmr->start();
+    velocity_y--;
+}
+
+
+void MainWindow::on_pushButton_pressed()
+{//left
+    if(is_x_pressed)return;
+    else is_x_pressed=-1;
+    tmr->start();
+    velocity_x--;
+}
+
+
+void MainWindow::on_pushButton_2_pressed()
+{//right
+    if(is_x_pressed)return;
+    else is_x_pressed=1;
+    tmr->start();
+    velocity_x++;
+}
+
+
+void MainWindow::on_pushButton_3_released()
+{
+    is_y_pressed=0;
+}
+
+
+void MainWindow::on_pushButton_released()
+{
+    is_x_pressed=0;
+}
+
+
+void MainWindow::on_pushButton_4_released()
+{
+    is_y_pressed=0;
+}
+
+
+void MainWindow::on_pushButton_2_released()
+{
+    is_x_pressed=0;
+}
+
+void MainWindow::change_velocity(){
+
+    if(!is_x_pressed){
+        velocity_x/=2;
+    }
+    else if(velocity_x<=100&&velocity_x>=-100){
+        velocity_x+=is_x_pressed;
+    }
+    if(!is_y_pressed){
+        velocity_y/=2;
+    }
+    else if(velocity_y<=100&&velocity_y>=-100){
+         velocity_y+=is_y_pressed;
+    }
+    int speed=sqrt(velocity_x*velocity_x+velocity_y*velocity_y);
+    if(speed<=100)ui->speed_indicator->setValue(speed);
+    if(!(velocity_x|velocity_y|is_x_pressed|is_y_pressed)){
+        tmr->stop();}
 }
