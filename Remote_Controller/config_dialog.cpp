@@ -1,10 +1,13 @@
 #include "config_dialog.h"
 #include "ui_config_dialog.h"
+#define default_interval 200
 Config_Dialog::Config_Dialog(QWidget *parent)
     :QDialog(parent),ui(new Ui::Config_Dialog)
 {    c.show_speed=true;
     c.config_choice=MainWindow::btn;
+    c.interval=default_interval;
     ui->setupUi(this);
+    ui->spinBox->setValue(default_interval);
     ui->checkBox->setChecked(c.show_speed);
     ui->radioButton_2->setChecked(true);
 }
@@ -36,6 +39,7 @@ void Config_Dialog::on_accept_btn_clicked()
     else if(ui->radioButton_2->isChecked())c.config_choice=MainWindow::btn;
     else c.config_choice=MainWindow::r;
     c.show_speed=ui->checkBox->isChecked();
+    c.interval=ui->spinBox->value();
     this->close();
     emit update_settings(c);
 
@@ -56,6 +60,7 @@ void Config_Dialog::on_cancel_btn_clicked()
     }
      this->close();
     ui->checkBox->setChecked(c.show_speed);
+     ui->spinBox->setValue(c.interval);
 }
 
 
@@ -63,6 +68,7 @@ void Config_Dialog::on_cancel_btn_clicked()
 void Config_Dialog::on_reset_btn_clicked()
 {ui->radioButton_2->setChecked(true);
     ui->checkBox->setChecked(true);
+    ui->spinBox->setValue(default_interval);
 }
 
 
@@ -85,11 +91,6 @@ void Config_Dialog::on_radioButton_3_clicked()
     ui->radioButton->setChecked(false);
     ui->radioButton_2->setChecked(false);
 }
-
-
-
-
-
 void Config_Dialog::on_open_bluetooth_serial_clicked()
 {
     emit open_serial();

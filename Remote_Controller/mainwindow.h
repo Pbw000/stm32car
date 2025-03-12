@@ -24,6 +24,7 @@ public:
     struct config{
         bool show_speed;
         choice config_choice;
+        int interval;
     };
     void print(const QString &info);
 
@@ -56,12 +57,15 @@ private slots:
 
     void on_pushButton_2_released();
 
+    void on_submit_btn_clicked();
+
 private:
     QTimer* tmr=new QTimer(this);
     QBluetoothSocket* connected_socket=nullptr;
     QString Address;
     int velocity_x=0,velocity_y=0;
     int is_x_pressed=0,is_y_pressed=0;
+    int Interval=200;
     route* route_widget;
     Joystick* joystick;
     Bluetooth_conn* b_conn=nullptr;

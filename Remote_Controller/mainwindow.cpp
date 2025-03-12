@@ -6,6 +6,8 @@
 #include<QMessageBox>
 #include"bluetooth_serial.h"
 #include<QTimer>
+#include<QThread>
+#include<memory>
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow) {
@@ -56,6 +58,7 @@ void MainWindow::update_setting(config c) {
 	ui->frame_7->setVisible(c.show_speed);
     ui->stackedWidget->setCurrentIndex(c.config_choice);
 	route_widget->geo.clear();
+    Interval=c.interval;
 }
 
 void MainWindow::on_pushButton_6_clicked() {
@@ -90,13 +93,14 @@ void MainWindow::set_battery_value(const int& value) {
 }
 
 void MainWindow::on_stop_btn_2_clicked() {
-      ui->speed_indicator->setValue(0);
+    velocity_x=0;
+      velocity_y=0;
 }
 
 void MainWindow::socket_connected(QBluetoothSocket* s, const QString &name, const QString &addr) {
     ui->car_icon->setPixmap(QPixmap(":/res/ic_fluent_vehicle_car_48_regular.png"));
 	connected_socket = s;
-    connect(connected_socket,&QBluetoothSocket::readyRead,[this](){rec_data(connected_socket->readAll());});
+    connect(connected_socket,&QBluetoothSocket::readyRead,[&](){rec_data(connected_socket->readAll());});
     connect(connected_socket,&QBluetoothSocket::errorOccurred,this,&MainWindow::socket_disconnected);
     ui->pushButton_6->setText("已连接");
 	ui->label->setText(name);
@@ -183,7 +187,6 @@ void MainWindow::on_pushButton_2_released()
 }
 
 void MainWindow::change_velocity(){
-
     if(!is_x_pressed){
         velocity_x/=2;
     }
@@ -201,3 +204,37 @@ void MainWindow::change_velocity(){
     if(!(velocity_x|velocity_y|is_x_pressed|is_y_pressed)){
         tmr->stop();}
 }
+
+void MainWindow::on_submit_btn_clicked()
+{ui->submit_btn->setEnabled(false);
+    route_widget->enable=false;
+    auto ptr=&route_widget->geo;
+    route::geometry* pre=new route::geometry(route_widget->geo.front());
+    QTimer* u_timer=new QTimer(this);
+    u_timer->setInterval(Interval);
+    u_timer->start();
+    connect(u_timer,&QTimer::timeout,[u_timer,ptr,pre,this](){
+
+            while(!ptr->empty()){
+                if(*pre-ptr->front()<10){
+                    ptr->pop_front();}
+                else break;
+            }
+            if(!ptr->empty()){
+            qDebug()<<(ptr->front().x-pre->x)<<(pre->y)-(ptr->front().y)<<ptr->front().x<<pre->x<<pre->y<<ptr->front().y;
+            *pre=ptr->front();
+            ptr->pop_front();
+            route_widget->repaint();
+        }
+        else{
+            route_widget->repaint();
+            u_timer->stop();
+            ui->submit_btn->setEnabled(true);
+            delete u_timer;
+            route_widget->enable=true;
+        }
+    });
+
+
+}
+
