@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "delay.h": "c",
+        "buzzer.hpp": "c",
+        "light_sensor.h": "c",
+        "stm32f10x.h": "c",
+        "timer.h": "c",
+        "motor.h": "c"
+    }
+}
