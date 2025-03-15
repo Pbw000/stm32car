@@ -7,7 +7,59 @@
 #include"bluetooth_serial.h"
 #include<QTimer>
 #include<QThread>
-#include<memory>
+#include <cstdint>
+
+class STM32CRC {
+private:
+    uint32_t crc;
+    static constexpr uint32_t Polynomial = 0x04C11DB7;  // STM32固定多项式
+
+    // 处理单个字节（MSB first）
+    void process_byte(uint8_t byte) {
+        for (int i = 0; i < 8; ++i) {
+            bool bit = (byte >> (7 - i)) & 0x1;  // 从最高位开始取位
+            bool msb = (crc >> 31) & 0x1;
+            crc = (crc << 1) | bit;  // 左移并插入新位
+            if (msb ^ bit) {
+                crc ^= Polynomial;    // 异或多项式
+            }
+        }
+    }
+
+public:
+    STM32CRC() : crc(0xFFFFFFFF) {}  // 初始值固定为0xFFFFFFFF
+
+    // 复位CRC寄存器
+    void reset() {
+        crc = 0xFFFFFFFF;
+    }
+
+    // 输入32位数据（模拟STM32的CRC->DR写入）
+    void update(uint32_t data) {
+        // 分解为4个字节（大端顺序：高字节在前）
+        process_byte((data >> 24) & 0xFF);  // 最高字节
+        process_byte((data >> 16) & 0xFF);
+        process_byte((data >> 8)  & 0xFF);
+        process_byte( data        & 0xFF);  // 最低字节
+    }
+
+    // 获取计算结果的低8位
+    uint8_t get() const {
+        return static_cast<uint8_t>(crc & 0xFF);
+    }
+};
+
+// 计算两个uint8_t的CRC-8校验和
+uint8_t ComputeCRC8(uint8_t data1, uint8_t data2) {
+    STM32CRC crc;
+    // 组合成32位数据：高16位为输入，低16位补零
+    uint32_t input = (static_cast<uint32_t>(data1) << 24) |
+                     (static_cast<uint32_t>(data2) << 16);
+    crc.update(input);
+    return crc.get();
+}
+
+#define RateLimint 60
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow) {
@@ -20,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->speed_indicator->setValue(0);
     tmr->setInterval(20);
     connect(tmr,&QTimer::timeout,this,&MainWindow::change_velocity);
+    connect(tmr1,&QTimer::timeout,this,&MainWindow::send_velocity);
 	Config_Dialog& Dialog = Config_Dialog::get_instance();
     connect(&Dialog,&Config_Dialog::open_serial,this,&MainWindow::open_bluetooth_serial);
 	connect(&Dialog, &Config_Dialog::update_settings, this, &MainWindow::update_setting);
@@ -29,11 +82,15 @@ MainWindow::MainWindow(QWidget *parent)
 #else
 	joystick = new Joystick();
 #endif
+    connect(joystick,&Joystick::positionChanged,[&](const int& v1,const int& v2){
+        velocity_x=v1;
+        velocity_y=v2;
+    });
 	ui->formLayout_2->addWidget(joystick);
 	route_widget = new route();
 	ui->formLayout_3->addWidget(route_widget);
 	route_widget->show();
-
+ tmr1->start(Interval);
 }
 
 MainWindow::~MainWindow() {
@@ -46,7 +103,28 @@ MainWindow::~MainWindow() {
 	delete joystick;
 	delete ui;
 }
+void MainWindow::send_velocity(){
 
+    int v1,v2;
+    v1=velocity_x+velocity_y;
+    if(v1>RateLimint)v1=RateLimint;
+    else if(v1<-RateLimint)v1=-RateLimint;
+    v2=velocity_y-velocity_x;
+    if(v2>RateLimint)v2=RateLimint;
+    else if(v2<-RateLimint)v2=-RateLimint;
+    uint8_t data1 = v1+100;
+    uint8_t data2 = v2+100;
+    uint8_t result = ComputeCRC8(data1, data2);
+    char command[4]={static_cast<char>(0xFF),static_cast<char>(data1),static_cast<char>(data2),static_cast<char>(static_cast<int>(result))};
+
+    qDebug()<<v1<<v2<<static_cast<int>(result);
+    if(connected_socket){
+        connected_socket->write(command);
+    }
+    else{
+        tmr1->stop();
+    }
+}
 void MainWindow::on_pushButton_7_clicked() {
     Config_Dialog& Dialog = Config_Dialog::get_instance();
 	Dialog.set_position(this);
@@ -59,6 +137,9 @@ void MainWindow::update_setting(config c) {
     ui->stackedWidget->setCurrentIndex(c.config_choice);
 	route_widget->geo.clear();
     Interval=c.interval;
+    tmr1->stop();
+    tmr1->start(Interval);
+
 }
 
 void MainWindow::on_pushButton_6_clicked() {
@@ -105,6 +186,7 @@ void MainWindow::socket_connected(QBluetoothSocket* s, const QString &name, cons
     ui->pushButton_6->setText("已连接");
 	ui->label->setText(name);
     Address=addr;
+    tmr1->start(Interval);
 }
 void MainWindow::print(const QString& info) {
 	ui->textBrowser->append(info);
@@ -222,6 +304,7 @@ void MainWindow::on_submit_btn_clicked()
             }
             if(!ptr->empty()){
             qDebug()<<(ptr->front().x-pre->x)<<(pre->y)-(ptr->front().y)<<ptr->front().x<<pre->x<<pre->y<<ptr->front().y;
+             //send_velocity(ptr->front().x-pre->x,pre->y-ptr->front().y);
             *pre=ptr->front();
             ptr->pop_front();
             route_widget->repaint();

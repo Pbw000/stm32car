@@ -27,7 +27,6 @@ void DMA::start_transfer() {
     DMA_SetCurrDataCounter(DMA1_Channel1, arr_size);
     DMA_Cmd(DMA1_Channel1, ENABLE);
     while (DMA_GetFlagStatus(DMA1_FLAG_TC1) == RESET);
-    
-        DMA_ClearFlag(DMA1_FLAG_TC1);
+     DMA_ClearFlag(DMA1_FLAG_TC1);
     
 }

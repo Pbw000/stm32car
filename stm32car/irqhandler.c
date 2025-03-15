@@ -11,7 +11,11 @@ void TIM3_IRQHandler(void) {
 			GPIO_ResetBits(GPIOA, GPIO_Pin_4);
 			GPIO_SetBits(GPIOA, GPIO_Pin_5);
 		}
-        TIM_ClearITPendingBit(TIM3, TIM_IT_CC1); 
+		else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_4);
+			GPIO_ResetBits(GPIOA, GPIO_Pin_5);
+		}
+         
     }
 	if (TIM_GetITStatus(TIM3, TIM_IT_CC2) != RESET) {
 		if(motor4_speed<0){
@@ -22,16 +26,21 @@ void TIM3_IRQHandler(void) {
 			GPIO_ResetBits(GPIOA, GPIO_Pin_6);
 			GPIO_SetBits(GPIOA, GPIO_Pin_7);
 		}
-        TIM_ClearITPendingBit(TIM3, TIM_IT_CC2); 
+		else {
+			GPIO_ResetBits(GPIOA, GPIO_Pin_6);
+			GPIO_ResetBits(GPIOA, GPIO_Pin_7);
+		}
+      
     }
 	if (TIM_GetITStatus(TIM3, TIM_IT_Update) == SET) {
-		if(motor3_speed<100){
+		if(motor3_speed<100&&motor3_speed>-100){
 		GPIO_ResetBits(GPIOA, GPIO_Pin_4);
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);}
-		if(motor4_speed<100){
+		if(motor4_speed<100&&motor4_speed>-100){
 		GPIO_ResetBits(GPIOA, GPIO_Pin_7);
 		GPIO_ResetBits(GPIOA, GPIO_Pin_6);}
-		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-	}
-
+		
+	}  TIM_ClearITPendingBit(TIM3, TIM_IT_CC2); 
+TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+TIM_ClearITPendingBit(TIM3, TIM_IT_CC1);
 }

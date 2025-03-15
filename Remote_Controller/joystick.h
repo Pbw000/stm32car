@@ -14,13 +14,14 @@ public:
     explicit Joystick(QWidget *parent = nullptr, int radius = 400)
         : QWidget(parent),
         m_center(radius/2, radius/2),
+        m_currentPos(radius/2, radius/2),
         m_handleRadius(40),
         m_pressedHandleRadius(45),
         m_maxDistance(radius/2 - m_pressedHandleRadius)
     {
         setFixedSize(radius, radius);
         setupAnimation();
-        startReturnAnimation();
+
     }
 
 signals:
@@ -99,11 +100,11 @@ private:
     }
 
     qreal normalizedX() const {
-        return static_cast<qreal>(m_currentPos.x() - m_center.x()) / m_maxDistance;
+        return static_cast<qreal>((m_currentPos.x() - m_center.x()) / m_maxDistance)*100.0;
     }
 
     qreal normalizedY() const {
-        return static_cast<qreal>(m_center.y() - m_currentPos.y()) / m_maxDistance;
+        return static_cast<qreal>((m_center.y() - m_currentPos.y()) / m_maxDistance)*100.0;
     }
 
     // 动画属性

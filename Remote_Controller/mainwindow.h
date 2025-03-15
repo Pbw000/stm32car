@@ -60,7 +60,9 @@ private slots:
     void on_submit_btn_clicked();
 
 private:
+    void send_velocity();
     QTimer* tmr=new QTimer(this);
+    QTimer* tmr1=new QTimer(this);
     QBluetoothSocket* connected_socket=nullptr;
     QString Address;
     int velocity_x=0,velocity_y=0;
