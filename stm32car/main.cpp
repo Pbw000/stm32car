@@ -6,11 +6,13 @@
 #include "Motor.h"
 #include "IC.h"
 #include "PWM.h"
+#include "Tracking.h"
 #include<stdio.h>
 #include"Encoder.h"
 #include"AD.h"
 #include"m_DMA.h"
 #include"USART.h"
+#include"Obstacle Avoid.h"
 volatile int8_t Serial_RxFlag=-1;
 volatile uint8_t recvData[2];
 void main_init(void){
@@ -27,13 +29,16 @@ NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 Motor_PWM_Init();
 CRC_ResetDR();
 Bluetooth_Serial_Init();
+Tracking_Init();
+Obstacle_Init();
 }
 Motor right_motor(Motor::Right_Motor);
 Motor left_motor(Motor::Left_Motor);
 int main(void)
 {main_init();
 while(1){
- 
+	Tracking_motion();
+	BZ();
     if(!Serial_RxFlag){
         int v1=recvData[0]-100,v2=recvData[1]-100;
         if(v1<=100&&v2<=100){

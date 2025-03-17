@@ -354,7 +354,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>1</ClangAsOpt>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -795,6 +795,26 @@
               <FileType>1</FileType>
               <FilePath>.\irqhandler.c</FilePath>
             </File>
+            <File>
+              <FileName>Tracking.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Tracking.h</FilePath>
+            </File>
+            <File>
+              <FileName>Tracking.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Hardware\Tracking.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Obstacle Avoid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Obstacle Avoid.h</FilePath>
+            </File>
+            <File>
+              <FileName>Obstacle Avoid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Hardware\Obstacle Avoid.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -810,7 +830,7 @@
   <LayerInfo>
     <Layers>
       <Layer>
-        <LayName>demo</LayName>
+        <LayName>car</LayName>
         <LayPrjMark>1</LayPrjMark>
       </Layer>
     </Layers>
