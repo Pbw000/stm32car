@@ -9,8 +9,7 @@
                 "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\st_32_Car\\hardware",
                 "C:\\Program Files\\Keil\\ARM\\ARMCC\\include",
                 "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\st_32_Car",
-                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\st_32_Car\\Hardware",
-                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\demo\\hardware"
+                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\st_32_Car\\Hardware"
             ],
             "defines": [
                 "USE_STDPERIPH_DRIVER",

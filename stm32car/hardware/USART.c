@@ -1,7 +1,9 @@
 #include "stm32f10x.h"                  // Device header
 extern int8_t Serial_RxFlag;
+
+#define USART3_BASE_ADDR ((uint32_t)0x40004800)
 uint8_t Serial_RxData;
-extern uint8_t recvData[20];
+extern uint8_t recvData[2];
 
 
 
@@ -40,6 +42,34 @@ void Bluetooth_Serial_Init(void){
 	NVIC_Init(&NVIC_InitStructure);
 	
 	USART_Cmd(USART3, ENABLE);
+	
+}
+void DMA_init(void)
+{RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+	DMA_DeInit(DMA1_Channel2);
+	DMA_InitTypeDef DMA_InitStructure;
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&((USART_TypeDef *)USART3_BASE_ADDR)->DR;
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)recvData;
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST; 
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+	DMA_InitStructure.DMA_BufferSize = 2;
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Enable;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_Medium;
+	DMA_Init(DMA1_Channel2, &DMA_InitStructure);
+	DMA_Cmd(DMA1_Channel2, ENABLE); 
+	USART_DMACmd(USART3, USART_DMAReq_Rx, ENABLE);
+}
+void start_transfer() {	
+	
+	DMA_Cmd(DMA1_Channel2, DISABLE);
+	DMA_SetCurrDataCounter(DMA1_Channel2, 2);
+	DMA_Cmd(DMA1_Channel2, ENABLE);
+while (DMA_GetFlagStatus(DMA1_FLAG_TC2) == RESET);
+	DMA_ClearFlag(DMA1_FLAG_TC2);
+	
 }
 void Serial_SendByte(uint8_t Byte)
 {

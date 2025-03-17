@@ -746,21 +746,6 @@
               <FilePath>.\Hardware\IC.h</FilePath>
             </File>
             <File>
-              <FileName>OLED.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\demo\hardware\OLED.c</FilePath>
-            </File>
-            <File>
-              <FileName>OLED.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\demo\hardware\OLED.h</FilePath>
-            </File>
-            <File>
-              <FileName>OLED_Font.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\demo\hardware\OLED_Font.h</FilePath>
-            </File>
-            <File>
               <FileName>Encoder.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hardware\Encoder.c</FilePath>
