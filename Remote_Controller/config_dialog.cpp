@@ -1,21 +1,22 @@
 #include "config_dialog.h"
 #include "ui_config_dialog.h"
-#define default_interval 200
+#include<QMessageBox>
+#define default_interval 30
 Config_Dialog::Config_Dialog(QWidget *parent)
     :QDialog(parent),ui(new Ui::Config_Dialog)
 {    c.show_speed=true;
     c.config_choice=MainWindow::btn;
     c.interval=default_interval;
+    c.max_speed=100;
     ui->setupUi(this);
     ui->spinBox->setValue(default_interval);
     ui->checkBox->setChecked(c.show_speed);
     ui->radioButton_2->setChecked(true);
+    ui->ob_void->setChecked(false);
+    ui->comboBox->setCurrentIndex(0);
 }
 
-Config_Dialog::~Config_Dialog()
-{
-    delete ui;
-}
+
 void Config_Dialog::set_position(QWidget *parent_window){
 #ifdef Q_OS_ANDROID
 this->setGeometry(parent_window->geometry());
@@ -40,6 +41,9 @@ void Config_Dialog::on_accept_btn_clicked()
     else c.config_choice=MainWindow::r;
     c.show_speed=ui->checkBox->isChecked();
     c.interval=ui->spinBox->value();
+    c.max_speed=ui->spinBox_2->value();
+    c.ob_void=ui->ob_void->isChecked();
+    c.tracking=ui->comboBox->currentIndex();
     this->close();
     emit update_settings(c);
 
@@ -61,6 +65,9 @@ void Config_Dialog::on_cancel_btn_clicked()
      this->close();
     ui->checkBox->setChecked(c.show_speed);
      ui->spinBox->setValue(c.interval);
+    ui->spinBox_2->setValue(c.max_speed);
+     ui->ob_void->setChecked(c.ob_void);
+     ui->comboBox->setCurrentIndex(c.tracking);
 }
 
 
@@ -69,6 +76,9 @@ void Config_Dialog::on_reset_btn_clicked()
 {ui->radioButton_2->setChecked(true);
     ui->checkBox->setChecked(true);
     ui->spinBox->setValue(default_interval);
+    ui->spinBox_2->setValue(100);
+    ui->ob_void->setChecked(false);
+    ui->comboBox->setCurrentIndex(0);
 }
 
 
@@ -94,5 +104,11 @@ void Config_Dialog::on_radioButton_3_clicked()
 void Config_Dialog::on_open_bluetooth_serial_clicked()
 {
     emit open_serial();
+}
+
+
+void Config_Dialog::on_about_clicked()
+{
+     QMessageBox::aboutQt(this);
 }
 

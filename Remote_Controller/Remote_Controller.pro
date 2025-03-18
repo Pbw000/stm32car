@@ -39,6 +39,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     res.qrc
 
+RC_FILE +=logo.rc
+
 DISTFILES += \
     ../Remote_Controller.pro/AndroidManifest.xml \
     ../Remote_Controller.pro/AndroidManifest.xml \
@@ -62,7 +64,9 @@ DISTFILES += \
     android/gradlew \
     android/gradlew.bat \
     android/res/values/libs.xml \
-    android/res/xml/qtprovider_paths.xml
+    android/res/xml/qtprovider_paths.xml \
+    logo.ico \
+    logo.rc
 
 contains(ANDROID_TARGET_ARCH,arm64-v8a) {
     ANDROID_PACKAGE_SOURCE_DIR = \

@@ -24,14 +24,14 @@ void forward(void)
 
 void turn_left(void)
 {
-	right_motor = 70;
+	right_motor = 50;
 	left_motor = 0;
 }
 
 void turn_right(void)
 {
 	right_motor = 0;
-	left_motor = 70;
+	left_motor = 50;
 }
 
 void back(void)

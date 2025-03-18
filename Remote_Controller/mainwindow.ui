@@ -15,7 +15,16 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/res/ic_fluent_vehicle_car_48_regular.png</normaloff>:/res/ic_fluent_vehicle_car_48_regular.png</iconset>
+    <normaloff>:/logo.png</normaloff>:/logo.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>32</width>
+    <height>32</height>
+   </size>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -352,7 +361,7 @@
                  <property name="minimumSize">
                   <size>
                    <width>60</width>
-                   <height>60</height>
+                   <height>0</height>
                   </size>
                  </property>
                  <property name="text">
@@ -383,7 +392,7 @@
                    <property name="minimumSize">
                     <size>
                      <width>60</width>
-                     <height>60</height>
+                     <height>0</height>
                     </size>
                    </property>
                    <property name="text">
@@ -435,7 +444,7 @@
                    <property name="minimumSize">
                     <size>
                      <width>60</width>
-                     <height>60</height>
+                     <height>0</height>
                     </size>
                    </property>
                    <property name="text">
@@ -466,7 +475,7 @@
                  <property name="minimumSize">
                   <size>
                    <width>60</width>
-                   <height>60</height>
+                   <height>0</height>
                   </size>
                  </property>
                  <property name="text">
@@ -591,7 +600,7 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>0</height>
              </size>
             </property>
             <property name="mouseTracking">
@@ -616,7 +625,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>20</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

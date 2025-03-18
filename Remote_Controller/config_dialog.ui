@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>280</width>
-    <height>350</height>
+    <width>325</width>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,7 +71,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0" colspan="2">
+             <item row="3" column="0" colspan="2">
               <layout class="QHBoxLayout" name="horizontalLayout_2">
                <property name="leftMargin">
                 <number>1</number>
@@ -109,6 +109,63 @@
                 </widget>
                </item>
               </layout>
+             </item>
+             <item row="1" column="0" colspan="2">
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>最大速度</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBox_2">
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                 <property name="value">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_3">
+            <property name="title">
+             <string>模式</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QCheckBox" name="ob_void">
+               <property name="text">
+                <string>避障</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBox">
+               <item>
+                <property name="text">
+                 <string>蓝牙模式</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>循迹模式</string>
+                </property>
+               </item>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -170,6 +227,13 @@
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
+           <widget class="QPushButton" name="about">
+            <property name="text">
+             <string>关于</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="open_bluetooth_serial">
             <property name="text">
              <string>打开蓝牙串口</string>
@@ -203,7 +267,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>35</height>
+          <height>0</height>
          </size>
         </property>
         <property name="text">
@@ -216,7 +280,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>35</height>
+          <height>0</height>
          </size>
         </property>
         <property name="text">
@@ -229,7 +293,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>35</height>
+          <height>0</height>
          </size>
         </property>
         <property name="text">

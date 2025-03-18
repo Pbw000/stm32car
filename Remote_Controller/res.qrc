@@ -30,5 +30,6 @@
         <file>res/ic_fluent_battery_warning_24_regular.png</file>
         <file>res/ic_fluent_bluetooth_disabled_24_regular.png</file>
         <file>res/ic_fluent_bluetooth_searching_24_regular.png</file>
+        <file>logo.png</file>
     </qresource>
 </RCC>

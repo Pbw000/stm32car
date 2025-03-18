@@ -31,22 +31,44 @@ CRC_ResetDR();
 Bluetooth_Serial_Init();
 Tracking_Init();
 Obstacle_Init();
+DMA_init();
 }
+bool tracking_flag=false;
+bool obstacle_flag=false;
 Motor right_motor(Motor::Right_Motor);
 Motor left_motor(Motor::Left_Motor);
 int main(void)
 {main_init();
 while(1){
-	Tracking_motion();
-	BZ();
+    if(tracking_flag){
+        Tracking_motion();
+    }
+    if(obstacle_flag){
+        BZ();
+    }
     if(!Serial_RxFlag){
         int v1=recvData[0]-100,v2=recvData[1]-100;
         if(v1<=100&&v2<=100){
             left_motor=v1;
             right_motor=v2;
-    //    start_transfer();
-Serial_RxFlag=-1;
+            tracking_flag=false;
 }
+else if(v1==101&&v2==100){
+     //启动循迹
+     tracking_flag=true;
+     start_transfer();
+}
+else if(v1==101&&v2==101){
+     //打开避障
+     obstacle_flag=true;
+     start_transfer();
+}
+else if(v1==101&&v2==102){
+    //关闭避障
+    obstacle_flag=false;
+    start_transfer();
+}
+Serial_RxFlag=-1;
 }
 
 }}

@@ -3,13 +3,13 @@
         {
             "name": "Target 1",
             "includePath": [
-                "c:\\Users\\pang_\\Downloads\\stm32car-main\\stm32car-main\\stm32car\\StartupFile",
-                "c:\\Users\\pang_\\Downloads\\stm32car-main\\stm32car-main\\stm32car\\User",
-                "c:\\Users\\pang_\\Downloads\\stm32car-main\\stm32car-main\\stm32car\\Library",
-                "c:\\Users\\pang_\\Downloads\\stm32car-main\\stm32car-main\\stm32car\\hardware",
+                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\stm32car_merge\\StartupFile",
+                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\stm32car_merge\\User",
+                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\stm32car_merge\\Library",
+                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\stm32car_merge\\hardware",
                 "C:\\Program Files\\Keil\\ARM\\ARMCC\\include",
-                "c:\\Users\\pang_\\Downloads\\stm32car-main\\stm32car-main\\stm32car",
-                "c:\\Users\\pang_\\Downloads\\stm32car-main\\stm32car-main\\stm32car\\Hardware"
+                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\stm32car_merge",
+                "c:\\Users\\pang_\\OneDrive - University of Glasgow\\STM32\\Project\\stm32car_merge\\Hardware"
             ],
             "defines": [
                 "USE_STDPERIPH_DRIVER",

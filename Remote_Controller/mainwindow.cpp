@@ -59,7 +59,6 @@ uint8_t ComputeCRC8(uint8_t data1, uint8_t data2) {
     return crc.get();
 }
 
-#define RateLimint 60
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow) {
@@ -103,15 +102,27 @@ MainWindow::~MainWindow() {
 	delete joystick;
 	delete ui;
 }
-void MainWindow::send_velocity(){
+void MainWindow::send_command(const uint8_t& a,const uint8_t& b){
 
+    uint8_t result = ComputeCRC8(a, b);
+    char command[4]={static_cast<char>(0xFF),static_cast<char>(a),static_cast<char>(b),static_cast<char>(static_cast<int>(result))};
+    qDebug()<<a<<b<<static_cast<int>(result);
+    if(connected_socket){
+        connected_socket->write(command);
+    }
+}
+void MainWindow::send_velocity(){
+    if(tracking){
+        tmr1->stop();
+        return;
+    }
     int v1,v2;
     v1=velocity_x+velocity_y;
-    if(v1>RateLimint)v1=RateLimint;
-    else if(v1<-RateLimint)v1=-RateLimint;
+    if(v1>max_speed)v1=max_speed;
+    else if(v1<-max_speed)v1=-max_speed;
     v2=velocity_y-velocity_x;
-    if(v2>RateLimint)v2=RateLimint;
-    else if(v2<-RateLimint)v2=-RateLimint;
+    if(v2>max_speed)v2=max_speed;
+    else if(v2<-max_speed)v2=-max_speed;
     uint8_t data1 = v1+100;
     uint8_t data2 = v2+100;
     uint8_t result = ComputeCRC8(data1, data2);
@@ -137,9 +148,28 @@ void MainWindow::update_setting(config c) {
     ui->stackedWidget->setCurrentIndex(c.config_choice);
 	route_widget->geo.clear();
     Interval=c.interval;
+    max_speed=c.max_speed;
+    ob_void=c.ob_void;
+    tracking=c.tracking;
     tmr1->stop();
-    tmr1->start(Interval);
-
+    if(!tracking){
+        tmr1->start(Interval);
+     ui->stackedWidget->setEnabled(true);}
+        else{
+        send_command(201,200);
+        qDebug()<<"启动循迹";
+        ui->stackedWidget->setEnabled(false);
+    //启动循迹
+    }
+    if(ob_void){
+ send_command(201,201);
+        qDebug()<<"打开避障";
+        //打开避障
+    }else{
+    send_command(201,202);
+        qDebug()<<"关闭避障";
+        //关闭避障
+    }
 }
 
 void MainWindow::on_pushButton_6_clicked() {
@@ -192,7 +222,7 @@ void MainWindow::print(const QString& info) {
 	ui->textBrowser->append(info);
 }
 void MainWindow::rec_data(const QString& data){
-    qDebug()<<data;
+    qDebug()<<Qt::hex<<data;
     print(data);
 
 }
@@ -317,7 +347,5 @@ void MainWindow::on_submit_btn_clicked()
             route_widget->enable=true;
         }
     });
-
-
 }
 

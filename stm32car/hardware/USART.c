@@ -1,6 +1,6 @@
 #include "stm32f10x.h"                  // Device header
 extern int8_t Serial_RxFlag;
-
+const uint8_t ok[2]="ok";
 #define USART3_BASE_ADDR ((uint32_t)0x40004800)
 uint8_t Serial_RxData;
 extern uint8_t recvData[2];
@@ -51,7 +51,7 @@ void DMA_init(void)
 	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&((USART_TypeDef *)USART3_BASE_ADDR)->DR;
 	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
 	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)recvData;
+	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)ok;
 	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST; 
 	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	DMA_InitStructure.DMA_BufferSize = 2;

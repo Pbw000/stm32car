@@ -7,7 +7,10 @@ bluetooth_serial::bluetooth_serial(QWidget *parent)
 {
     ui->setupUi(this);
 
-    socket_serial=static_cast<MainWindow>(parent).connected_socket;
+    auto ptr=dynamic_cast<MainWindow*>(parent);
+    if(ptr){
+        socket_serial=ptr->connected_socket;
+    }
 }
 bluetooth_serial::~bluetooth_serial()
 {

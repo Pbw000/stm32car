@@ -31,10 +31,12 @@ private slots:
 
     void on_open_bluetooth_serial_clicked();
 
+    void on_about_clicked();
+
 private:
 MainWindow::config c;
     Ui::Config_Dialog *ui;
-    ~Config_Dialog();
+~Config_Dialog(){};
 signals:
     void update_settings(MainWindow::config cfg);
     void open_serial();
