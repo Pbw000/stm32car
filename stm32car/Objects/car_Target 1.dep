@@ -811,7 +811,7 @@ I (.\Library\stm32f10x_usart.h)(0x67D83048)
 I (.\Library\stm32f10x_wwdg.h)(0x67D8304A)
 I (.\Library\misc.h)(0x67D83048)
 F (.\User\stm32f10x_it.h)(0x67D8304A)()
-F (.\main.cpp)(0x67D8F705)(--cpp -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.cpp)(0x67FFC5E5)(--cpp -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\StartupFile\stm32f10x.h)(0x67D8304A)
 I (.\StartupFile\core_cm3.h)(0x67D8304A)
 I (C:\Program Files\Keil\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
@@ -841,19 +841,11 @@ I (.\Library\stm32f10x_usart.h)(0x67D83048)
 I (.\Library\stm32f10x_wwdg.h)(0x67D8304A)
 I (.\Library\misc.h)(0x67D83048)
 I (.\Library\Delay.h)(0x67D83048)
-I (.\hardware\Button.h)(0x67D8304A)
-I (.\hardware\Buzzer.h)(0x67D8304A)
-I (.\hardware\Light_sensor.h)(0x67D8304A)
-I (.\hardware\Motor.h)(0x67D8304A)
-I (.\hardware\IC.h)(0x67D8304A)
-I (.\hardware\PWM.h)(0x67D8304A)
+I (.\hardware\Motor.h)(0x67FFC9E7)
 I (.\hardware\Tracking.h)(0x67D83F56)
-I (C:\Program Files\Keil\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
-I (.\hardware\Encoder.h)(0x67D8304A)
-I (.\hardware\AD.h)(0x67D8304A)
 I (.\hardware\m_DMA.h)(0x67D8304A)
 I (.\hardware\USART.h)(0x67D8F6AE)
-I (.\hardware\Obstacle Avoid.h)(0x67D83EA0)
+I (.\hardware\Obstacle Avoid.h)(0x67FFC3ED)
 F (.\hardware\Button.c)(0x67D8304A)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\button.o --omf_browse .\objects\button.crf --depend .\objects\button.d)
 I (.\StartupFile\stm32f10x.h)(0x67D8304A)
 I (.\StartupFile\core_cm3.h)(0x67D8304A)
@@ -978,8 +970,8 @@ I (.\Library\stm32f10x_tim.h)(0x67D83048)
 I (.\Library\stm32f10x_usart.h)(0x67D83048)
 I (.\Library\stm32f10x_wwdg.h)(0x67D8304A)
 I (.\Library\misc.h)(0x67D83048)
-F (.\Hardware\Motor.h)(0x67D8304A)()
-F (.\Hardware\IC.c)(0x67D8304A)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\ic.o --omf_browse .\objects\ic.crf --depend .\objects\ic.d)
+F (.\Hardware\Motor.h)(0x67FFC9E7)()
+F (.\Hardware\IC.c)(0x67FFB730)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\ic.o --omf_browse .\objects\ic.crf --depend .\objects\ic.d)
 I (.\StartupFile\stm32f10x.h)(0x67D8304A)
 I (.\StartupFile\core_cm3.h)(0x67D8304A)
 I (C:\Program Files\Keil\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
@@ -1101,7 +1093,7 @@ I (.\Library\stm32f10x_wwdg.h)(0x67D8304A)
 I (.\Library\misc.h)(0x67D83048)
 I (Hardware\m_DMA.h)(0x67D8304A)
 F (.\Hardware\m_DMA.h)(0x67D8304A)()
-F (.\hardware\USART.c)(0x67D8F67C)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\usart.o --omf_browse .\objects\usart.crf --depend .\objects\usart.d)
+F (.\hardware\USART.c)(0x67FFB5A6)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\usart.o --omf_browse .\objects\usart.crf --depend .\objects\usart.d)
 I (.\StartupFile\stm32f10x.h)(0x67D8304A)
 I (.\StartupFile\core_cm3.h)(0x67D8304A)
 I (C:\Program Files\Keil\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
@@ -1131,7 +1123,7 @@ I (.\Library\stm32f10x_usart.h)(0x67D83048)
 I (.\Library\stm32f10x_wwdg.h)(0x67D8304A)
 I (.\Library\misc.h)(0x67D83048)
 F (.\hardware\USART.h)(0x67D8F6AE)()
-F (.\hardware\Motor.cpp)(0x67D8304A)(--cpp -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
+F (.\hardware\Motor.cpp)(0x67FFBE0D)(--cpp -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
 I (.\StartupFile\stm32f10x.h)(0x67D8304A)
 I (.\StartupFile\core_cm3.h)(0x67D8304A)
 I (C:\Program Files\Keil\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
@@ -1160,8 +1152,8 @@ I (.\Library\stm32f10x_tim.h)(0x67D83048)
 I (.\Library\stm32f10x_usart.h)(0x67D83048)
 I (.\Library\stm32f10x_wwdg.h)(0x67D8304A)
 I (.\Library\misc.h)(0x67D83048)
-I (hardware\Motor.h)(0x67D8304A)
-F (.\irqhandler.c)(0x67D83048)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\irqhandler.o --omf_browse .\objects\irqhandler.crf --depend .\objects\irqhandler.d)
+I (hardware\Motor.h)(0x67FFC9E7)
+F (.\irqhandler.c)(0x67FFC49E)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\irqhandler.o --omf_browse .\objects\irqhandler.crf --depend .\objects\irqhandler.d)
 I (.\StartupFile\stm32f10x.h)(0x67D8304A)
 I (.\StartupFile\core_cm3.h)(0x67D8304A)
 I (C:\Program Files\Keil\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
@@ -1220,10 +1212,10 @@ I (.\Library\stm32f10x_tim.h)(0x67D83048)
 I (.\Library\stm32f10x_usart.h)(0x67D83048)
 I (.\Library\stm32f10x_wwdg.h)(0x67D8304A)
 I (.\Library\misc.h)(0x67D83048)
-I (Hardware\Motor.h)(0x67D8304A)
+I (Hardware\Motor.h)(0x67FFC9E7)
 I (.\Library\Delay.h)(0x67D83048)
-F (.\Hardware\Obstacle Avoid.h)(0x67D83EA0)()
-F (.\Hardware\Obstacle Avoid.cpp)(0x67D844AD)(--cpp -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ".\objects\obstacle avoid.o" --omf_browse ".\objects\obstacle avoid.crf" --depend ".\objects\obstacle avoid.d")
+F (.\Hardware\Obstacle Avoid.h)(0x67FFC3ED)()
+F (.\Hardware\Obstacle Avoid.cpp)(0x67FFC9BF)(--cpp -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\StartupFile -I .\User -I .\Library -I .\hardware-IC:\Users\pang_\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ".\objects\obstacle avoid.o" --omf_browse ".\objects\obstacle avoid.crf" --depend ".\objects\obstacle avoid.d")
 I (.\StartupFile\stm32f10x.h)(0x67D8304A)
 I (.\StartupFile\core_cm3.h)(0x67D8304A)
 I (C:\Program Files\Keil\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
@@ -1254,3 +1246,4 @@ I (.\Library\stm32f10x_wwdg.h)(0x67D8304A)
 I (.\Library\misc.h)(0x67D83048)
 I (.\Library\Delay.h)(0x67D83048)
 I (Hardware\Tracking.h)(0x67D83F56)
+I (Hardware\Motor.h)(0x67FFC9E7)

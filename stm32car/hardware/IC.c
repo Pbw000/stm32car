@@ -15,7 +15,6 @@ void IC_Init(void){
     TIM_TimeBaseStructure.TIM_ClockDivision = 0;
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
     TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
-    TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
 	
 	TIM_ICInitTypeDef TIM_ICInitStructure;
 	TIM_ICInitStructure.TIM_Channel=TIM_Channel_1;

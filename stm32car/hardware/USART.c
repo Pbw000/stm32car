@@ -1,18 +1,10 @@
 #include "stm32f10x.h"                  // Device header
 extern int8_t Serial_RxFlag;
-const uint8_t ok[2]="ok";
+const uint8_t ok[1]="o";
 #define USART3_BASE_ADDR ((uint32_t)0x40004800)
 uint8_t Serial_RxData;
 extern uint8_t recvData[2];
 
-
-
-uint8_t Compute_CRC8(uint8_t data1, uint8_t data2) {
-    CRC_ResetDR();
-    uint32_t input = ((uint32_t)data1 << 24) | ((uint32_t)data2 << 16);
-    CRC_CalcCRC(input);
-    return (uint8_t)(CRC_GetCRC() & 0xFF);
-}
 
 
 void Bluetooth_Serial_Init(void){
@@ -54,7 +46,7 @@ void DMA_init(void)
 	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)ok;
 	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST; 
 	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
-	DMA_InitStructure.DMA_BufferSize = 2;
+	DMA_InitStructure.DMA_BufferSize = 1;
 	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
 	DMA_InitStructure.DMA_M2M = DMA_M2M_Enable;
 	DMA_InitStructure.DMA_Priority = DMA_Priority_Medium;
@@ -133,12 +125,9 @@ void USART3_IRQHandler(void)
                 Serial_RxFlag = 1;
             break;
         case 3:
-            // Check the CRC of the received data
-            if (Serial_RxData == Compute_CRC8(recvData[0], recvData[1]))
-                Serial_RxFlag = 0; // CRC is correct, reset flag
-            else
-                Serial_RxFlag = -1; // CRC is incorrect, reset to waiting for start byte
-            break;
+                Serial_RxFlag = 0; 
+				recvData[2] = Serial_RxData;
+				break;
         default:
             if (Serial_RxFlag > 0)
             {

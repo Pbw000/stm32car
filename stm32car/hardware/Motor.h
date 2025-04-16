@@ -10,6 +10,7 @@ class Motor{
 	Left_Motor
 };
     Motor(const Motor_Type& motor_){
+		motor_max_speed=100;
 			switch (motor_){
 				case Right_Motor:
 					set_speed=right_motor_set_speed;
@@ -21,15 +22,34 @@ class Motor{
 		}}
     void (*set_speed)(const int8_t&);
     void operator=(const int8_t& speed){
-        set_speed(speed);
-		motor_speed = speed;
+		if(speed>0){
+			if(speed>motor_max_speed){
+				set_speed(motor_max_speed);
+				motor_speed = motor_max_speed;
+			}
+			else{
+				set_speed(speed);
+				motor_speed = speed;
+			}
+		}
+		else{
+			if(-speed>motor_max_speed){
+				set_speed(-motor_max_speed);
+				motor_speed = -motor_max_speed;
+			}
+			else{
+				set_speed(speed);
+				motor_speed = speed;
+			}
+		}
+		
     }
 	void operator+=(const int8_t& speed){
-		if(motor_speed+speed>100){
-			set_speed(100);
+		if(motor_speed+speed>motor_max_speed){
+			set_speed(motor_max_speed);
 		}
-		else if(motor_speed+speed<-100){
-			set_speed(-100);
+		else if(motor_speed+speed<-motor_max_speed){
+			set_speed(-motor_max_speed);
 		}
 		else{
 			motor_speed+=speed;
@@ -37,20 +57,33 @@ class Motor{
 	}
 }
 void operator-=(const int8_t& speed){
-		if(motor_speed-speed>100){
-			set_speed(100);
-			motor_speed = 100;
+		if(motor_speed-speed>motor_max_speed){
+			set_speed(motor_max_speed);
+			motor_speed = motor_max_speed;
 		}
-		else if(motor_speed-speed<-100){
-			set_speed(-100);
-			motor_speed = -100;
+		else if(motor_speed-speed<-motor_max_speed){
+			set_speed(-motor_max_speed);
+			motor_speed = -motor_max_speed;
 		}
 		else{motor_speed = motor_speed-speed;
 		set_speed(motor_speed);
 		
 	}
 }
+void set_max_speed(const int8_t& max_speed){
+	if(motor_speed>0){
+		if(motor_speed>max_speed){
+			set_speed(max_speed);
+		}
+	}else{
+		if(-motor_speed>max_speed){
+			set_speed(-max_speed);
+		}
+	}
+	motor_max_speed = max_speed;
+}
     private:
     int8_t motor_speed;
+	int8_t motor_max_speed;
 };
 #endif

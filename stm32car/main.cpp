@@ -1,21 +1,23 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
-#include "Button.h"
-#include "Buzzer.h"
-#include "Light_sensor.h"
 #include "Motor.h"
-#include "IC.h"
-#include "PWM.h"
 #include "Tracking.h"
-#include<stdio.h>
-#include"Encoder.h"
-#include"AD.h"
 #include"m_DMA.h"
 #include"USART.h"
 #include"Obstacle Avoid.h"
 volatile int8_t Serial_RxFlag=-1;
-volatile uint8_t recvData[2];
+volatile uint8_t recvData[3];
+
+uint8_t Compute_CRC8(uint8_t data1, uint8_t data2) {
+    CRC_ResetDR();
+    uint32_t input = ((uint32_t)data1 << 24) | ((uint32_t)data2 << 16);
+    CRC_CalcCRC(input);
+    return (uint8_t)(CRC_GetCRC() & 0xFF);
+}
+
+
 void main_init(void){
+RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
 RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2,ENABLE);
@@ -40,6 +42,7 @@ Motor left_motor(Motor::Left_Motor);
 int main(void)
 {main_init();
 while(1){
+   Ultrasonic_Step();
     if(tracking_flag){
         Tracking_motion();
     }
@@ -47,6 +50,10 @@ while(1){
         BZ();
     }
     if(!Serial_RxFlag){
+        if (recvData[2] != Compute_CRC8(recvData[0], recvData[1])){
+            Serial_RxFlag=-1;
+            continue;
+        }
         int v1=recvData[0]-100,v2=recvData[1]-100;
         if(v1<=100&&v2<=100){
             left_motor=v1;
