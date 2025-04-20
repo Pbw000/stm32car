@@ -70,6 +70,9 @@ void operator-=(const int8_t& speed){
 		
 	}
 }
+void restore_speed(){
+set_speed(motor_speed);
+}
 void set_max_speed(const int8_t& max_speed){
 	if(motor_speed>0){
 		if(motor_speed>max_speed){

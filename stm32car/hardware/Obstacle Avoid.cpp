@@ -2,6 +2,7 @@
 #include "Delay.h"
 #include "Tracking.h"
 #include "Motor.h"
+#define abs(x) ((x)>0?(x):-(x))
 extern class Motor right_motor;
 extern class Motor left_motor;
 extern uint32_t pulse_width; 
@@ -30,7 +31,9 @@ void BZ(void)
         Delay_ms(3);
         while ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 1) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 0))
         {
-            turn_left(); // Turn left
+ right_motor .set_speed( -40);
+	left_motor .set_speed( -70);
+					 Delay_ms(140);
         }
     }
      if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 1) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0)) // Left side obstacle
@@ -38,7 +41,12 @@ void BZ(void)
         Delay_ms(3);
         while ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 1) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0))
         {
-            turn_right(); // Turn right
+        left_motor .set_speed( -45);
+	right_motor .set_speed( -70);
+        Delay_ms(70);
+					  left_motor .set_speed( 45);
+	right_motor .set_speed( -70);
+        Delay_ms(70);
         }
     }
 		 if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 0) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0)) // Both sides obstacle
@@ -46,10 +54,12 @@ void BZ(void)
         Delay_ms(3);
         while ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 0) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0))
         {
-            back(); // Move back
-            Delay_ms(600);
-            circle_right(); // Circle right
-            Delay_ms(500);
+    right_motor .set_speed( -45);
+	left_motor .set_speed( -70);
+        Delay_ms(70);
+					  right_motor .set_speed( 45);
+	left_motor .set_speed( -70);
+        Delay_ms(70);
         }
     }
 }
@@ -98,17 +108,23 @@ void Ultrasonic_Step(){
 	}
     else return;
     if(avr_dis<800){
-      back(); // Move back
-        Delay_ms(600);
-        circle_right(); // Circle right
-        Delay_ms(500);
+			left_motor.set_max_speed(50);
+        right_motor.set_max_speed(45);
+       left_motor.set_speed(-50);
+      right_motor.set_speed(-45);
+        Delay_ms(200);
+			  left_motor.set_speed(-70);
+      right_motor.set_speed(45);
+			Delay_ms(100);
     }
     else if(avr_dis<1600){
-       left_motor.set_max_speed((avr_dis-800)/10+20);
-       right_motor.set_max_speed((avr_dis-800)/10+20);
+       left_motor.set_max_speed((avr_dis-400)/20+40);
+       right_motor.set_max_speed((avr_dis-400)/20+40);
     }
     else{
         left_motor.set_max_speed(100);
         right_motor.set_max_speed(100);
+			left_motor.restore_speed();
+			right_motor.restore_speed();
     }
 }

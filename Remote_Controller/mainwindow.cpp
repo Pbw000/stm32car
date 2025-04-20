@@ -143,6 +143,39 @@ void MainWindow::on_pushButton_7_clicked() {
 	Dialog.show();
 
 }
+#include <QEventLoop>
+#include <QTimer>
+
+void delayWithEventLoop(int milliseconds) {
+    QEventLoop loop;
+    QTimer timer;
+    timer.setSingleShot(true); // 单次触发定时器
+    QObject::connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    timer.start(milliseconds); // 启动定时器
+    loop.exec(); // 启动事件循环，等待定时器超时后退出
+}
+
+
+void MainWindow::send_commond_with_timeout(uint8_t a,uint8_t b,QString msg=""){
+    int CNT=0;
+    while (!rec_flag&&CNT<20) {
+        send_command(a,b);
+        delayWithEventLoop(50);
+
+        CNT++;
+    }
+    if(rec_flag){
+        rec_flag=false;
+        if(!msg.isEmpty())
+        qDebug()<<msg;
+        //打开
+    }
+    else{if(!msg.isEmpty())
+        qDebug()<<msg+"失败";
+    }
+}
+
+
 void MainWindow::update_setting(config c) {
 	ui->frame_7->setVisible(c.show_speed);
     ui->stackedWidget->setCurrentIndex(c.config_choice);
@@ -155,22 +188,19 @@ void MainWindow::update_setting(config c) {
     if(!tracking){
         tmr1->start(Interval);
      ui->stackedWidget->setEnabled(true);}
+
+
         else{
-        send_command(201,200);
-        qDebug()<<"启动循迹";
+         send_commond_with_timeout(201,200,"启动循迹");
         ui->stackedWidget->setEnabled(false);
     //启动循迹
     }
     if(ob_void){
- send_command(201,201);
-        qDebug()<<"打开避障";
-        //打开避障
+     send_commond_with_timeout(201,201,"打开避障");
+
     }else{
-    send_command(201,202);
-        qDebug()<<"关闭避障";
-        //关闭避障
-    }
-}
+        send_commond_with_timeout(201,202,"关闭避障");
+    }}
 
 void MainWindow::on_pushButton_6_clicked() {
 	if (connected_socket) {
@@ -224,7 +254,7 @@ void MainWindow::print(const QString& info) {
 void MainWindow::rec_data(const QString& data){
     qDebug()<<Qt::hex<<data;
     print(data);
-
+    rec_flag=true;
 }
 void MainWindow::socket_disconnected(){
     connected_socket=nullptr;

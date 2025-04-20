@@ -64,9 +64,11 @@ private slots:
     void on_submit_btn_clicked();
 
 private:
+    void send_commond_with_timeout(uint8_t a,uint8_t b,QString msg);
     void send_velocity();
     bool ob_void=false;
     bool tracking=false;
+    bool rec_flag=false;
     QTimer* tmr=new QTimer(this);
     QTimer* tmr1=new QTimer(this);
     QBluetoothSocket* connected_socket=nullptr;

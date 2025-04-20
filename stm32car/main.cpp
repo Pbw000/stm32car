@@ -36,18 +36,20 @@ Obstacle_Init();
 DMA_init();
 }
 bool tracking_flag=false;
-bool obstacle_flag=false;
+bool obstacle_flag=true;
 Motor right_motor(Motor::Right_Motor);
 Motor left_motor(Motor::Left_Motor);
 int main(void)
 {main_init();
 while(1){
-   Ultrasonic_Step();
+
     if(tracking_flag){
         Tracking_motion();
+           
     }
     if(obstacle_flag){
         BZ();
+			Ultrasonic_Step();
     }
     if(!Serial_RxFlag){
         if (recvData[2] != Compute_CRC8(recvData[0], recvData[1])){
