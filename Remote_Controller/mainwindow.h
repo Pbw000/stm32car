@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include<map>
 #include <QMainWindow>
 #include"joystick.h"
 #include"route.h"
@@ -34,7 +34,7 @@ public:
 
 private slots:
     void on_pushButton_7_clicked();
-    void rec_data(const QString& data);
+    void rec_data(const QByteArray& data);
     void on_pushButton_6_clicked();
     void set_battery_value(const int&);
     void update_setting(config c);
@@ -66,6 +66,7 @@ private slots:
 private:
     void send_commond_with_timeout(uint8_t a,uint8_t b,QString msg);
     void send_velocity();
+    std::map<QString,QString> return_value_map;
     bool ob_void=false;
     bool tracking=false;
     bool rec_flag=false;

@@ -7,6 +7,6 @@ void turn_left(void);
 void turn_right(void);
 void back(void);
 void circle_right(void);
-
+void speed_smooth_transition(void);
 
 #endif

@@ -67,7 +67,6 @@ void operator-=(const int8_t& speed){
 		}
 		else{motor_speed = motor_speed-speed;
 		set_speed(motor_speed);
-		
 	}
 }
 void restore_speed(){

@@ -37,15 +37,19 @@ DMA_init();
 }
 bool tracking_flag=false;
 bool obstacle_flag=true;
+bool available=false;
 Motor right_motor(Motor::Right_Motor);
 Motor left_motor(Motor::Left_Motor);
 int main(void)
 {main_init();
 while(1){
-
-    if(tracking_flag){
+    if(!available){
+        if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_13) == 0 && GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_14) == 0){
+            available=true;
+        }
+    }
+    else if(tracking_flag){
         Tracking_motion();
-           
     }
     if(obstacle_flag){
         BZ();
@@ -65,17 +69,23 @@ while(1){
 else if(v1==101&&v2==100){
      //启动循迹
      tracking_flag=true;
-     start_transfer();
+       left_motor=0;
+        right_motor=0;
+        available=false;
+      Serial_SendByte(0xFD);
+
 }
 else if(v1==101&&v2==101){
      //打开避障
      obstacle_flag=true;
-     start_transfer();
+    Serial_SendByte(0xFC);
+ 
 }
 else if(v1==101&&v2==102){
     //关闭避障
     obstacle_flag=false;
-    start_transfer();
+    Serial_SendByte(0xFB);
+
 }
 Serial_RxFlag=-1;
 }

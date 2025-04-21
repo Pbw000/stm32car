@@ -3,7 +3,7 @@ extern int8_t Serial_RxFlag;
 const uint8_t ok[1]="o";
 #define USART3_BASE_ADDR ((uint32_t)0x40004800)
 uint8_t Serial_RxData;
-extern uint8_t recvData[2];
+extern uint8_t recvData[3];
 
 
 

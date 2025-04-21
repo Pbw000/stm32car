@@ -31,33 +31,28 @@ void BZ(void)
         Delay_ms(3);
         while ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 1) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 0))
         {
- right_motor .set_speed( -40);
+ right_motor .set_speed(45);
 	left_motor .set_speed( -70);
-					 Delay_ms(140);
+            Delay_ms(140);
         }
+        
     }
-     if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 1) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0)) // Left side obstacle
+    else if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 1) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0)) // Left side obstacle
     {
         Delay_ms(3);
         while ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 1) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0))
         {
-        left_motor .set_speed( -45);
-	right_motor .set_speed( -70);
-        Delay_ms(70);
-					  left_motor .set_speed( 45);
+                left_motor.set_speed( 45);
 	right_motor .set_speed( -70);
         Delay_ms(70);
         }
     }
-		 if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 0) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0)) // Both sides obstacle
+	else if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 0) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0)) // Both sides obstacle
     {
         Delay_ms(3);
         while ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == 0) && (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0))
         {
-    right_motor .set_speed( -45);
-	left_motor .set_speed( -70);
-        Delay_ms(70);
-					  right_motor .set_speed( 45);
+		right_motor .set_speed( 45);
 	left_motor .set_speed( -70);
         Delay_ms(70);
         }
@@ -124,7 +119,7 @@ void Ultrasonic_Step(){
     else{
         left_motor.set_max_speed(100);
         right_motor.set_max_speed(100);
-			left_motor.restore_speed();
-			right_motor.restore_speed();
+        left_motor.restore_speed();
+        right_motor.restore_speed();
     }
 }

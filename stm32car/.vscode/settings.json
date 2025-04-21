@@ -6,6 +6,7 @@
         "stm32f10x.h": "c",
         "timer.h": "c",
         "motor.h": "c",
-        "stm32f10x_crc.h": "c"
+        "stm32f10x_crc.h": "c",
+        "tracking.h": "c"
     }
 }

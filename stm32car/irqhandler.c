@@ -16,12 +16,6 @@ capture_flag = 1;
  TIM_CCxCmd(TIM3, TIM_Channel_3, TIM_CCx_Disable);    
 TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
 	} 
-	if (TIM_GetITStatus(TIM3, TIM_IT_Update) == SET) {
-		if(!pulse_width)pulse_width = 0xFFFFFFFF;
-capture_flag = 1;
- TIM_CCxCmd(TIM3, TIM_Channel_3, TIM_CCx_Disable);    
-TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-}
 if (TIM_GetITStatus(TIM3, TIM_IT_CC3) == SET) {
 if (TIM3->CCER & TIM_CCER_CC3P) {
 pulse_width = TIM_GetCapture3(TIM3);

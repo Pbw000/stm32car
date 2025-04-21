@@ -89,6 +89,12 @@ MainWindow::MainWindow(QWidget *parent)
 	route_widget = new route();
 	ui->formLayout_3->addWidget(route_widget);
 	route_widget->show();
+    return_value_map["fd"]="启动循迹";
+     return_value_map["fc"]="打开避障";
+     return_value_map["fb"]="关闭避障";
+      // return_value_map[0xFD]="";
+      //  return_value_map[0xFD]="";
+      //  return_value_map[0xFD]="";
  tmr1->start(Interval);
 }
 
@@ -106,9 +112,11 @@ void MainWindow::send_command(const uint8_t& a,const uint8_t& b){
 
     uint8_t result = ComputeCRC8(a, b);
     char command[4]={static_cast<char>(0xFF),static_cast<char>(a),static_cast<char>(b),static_cast<char>(static_cast<int>(result))};
-    qDebug()<<a<<b<<static_cast<int>(result);
     if(connected_socket){
         connected_socket->write(command);
+    }
+    else{
+        tmr1->stop();
     }
 }
 void MainWindow::send_velocity(){
@@ -125,10 +133,11 @@ void MainWindow::send_velocity(){
     else if(v2<-max_speed)v2=-max_speed;
     uint8_t data1 = v1+100;
     uint8_t data2 = v2+100;
-    uint8_t result = ComputeCRC8(data1, data2);
+   uint8_t result = ComputeCRC8(data1, data2);
+  // send_commond_with_timeout(data1,data2,"");
     char command[4]={static_cast<char>(0xFF),static_cast<char>(data1),static_cast<char>(data2),static_cast<char>(static_cast<int>(result))};
 
-    qDebug()<<v1<<v2<<static_cast<int>(result);
+   // qDebug()<<v1<<v2<<static_cast<int>(result);
     if(connected_socket){
         connected_socket->write(command);
     }
@@ -157,11 +166,11 @@ void delayWithEventLoop(int milliseconds) {
 
 
 void MainWindow::send_commond_with_timeout(uint8_t a,uint8_t b,QString msg=""){
+    if(!connected_socket)return;
     int CNT=0;
     while (!rec_flag&&CNT<20) {
         send_command(a,b);
-        delayWithEventLoop(50);
-
+        delayWithEventLoop(100);
         CNT++;
     }
     if(rec_flag){
@@ -249,11 +258,17 @@ void MainWindow::socket_connected(QBluetoothSocket* s, const QString &name, cons
     tmr1->start(Interval);
 }
 void MainWindow::print(const QString& info) {
-	ui->textBrowser->append(info);
+    ui->textBrowser->append(info);
 }
-void MainWindow::rec_data(const QString& data){
-    qDebug()<<Qt::hex<<data;
-    print(data);
+void MainWindow::rec_data(const QByteArray& data){
+    qDebug()<<data<<' '<<data.toHex()<<' '<<data.toInt();
+        auto pair_found=return_value_map.find(data.toHex().toLower());
+        if(pair_found!=return_value_map.cend()){
+            print(pair_found->second);
+        }
+
+
+
     rec_flag=true;
 }
 void MainWindow::socket_disconnected(){

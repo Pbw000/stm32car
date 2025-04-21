@@ -51,45 +51,37 @@ void Tracking_motion(void)
 	if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_13) == 1 && GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_14) == 0)
 	{left_motor=-100;
 	right_motor=-100;
-	Delay_ms(30);
+	Delay_ms(20);
 		while(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_13) == 1 && GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_14) == 0)
 	{is_triggered=true;
 		turn_right();
 	}
-	if(is_triggered)
-	Delay_ms(70);
+	if(is_triggered){
+Delay_ms(70);
+		 Tracking_motion();
+	}
+	
 	
 	}
 	else if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_13) == 0 && GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_14) == 1)
 	{left_motor=-100;
 	right_motor=-100;
-	Delay_ms(30);
+	Delay_ms(20);
 	bool is_triggered=false;
 while (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_13) == 0 && GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_14) == 1)
 {is_triggered=true;
 		turn_left();
 }
-if(is_triggered)
+if(is_triggered){
 Delay_ms(70);
+		 Tracking_motion();
+	}
 
-	}
-	else{
-		forward();
-	}
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	else{
+		forward();
+	}
+}
